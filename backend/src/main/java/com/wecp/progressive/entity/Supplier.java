@@ -1,21 +1,40 @@
 package com.wecp.progressive.entity;
 
-public class Supplier {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Supplier implements Comparable<Supplier> {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int supplierId;
     private String supplierName;
-    private String contactEmail;
-    private String contactPhone;
+    private String email;
+    private String phone;
     private String address;
+    private String username;
+    private String password;
     private String role;
 
-    public Supplier(int supplierId, String supplierName, String contactEmail, String contactPhone, String address,
-            String role) {
+    public Supplier() {
+    }
+
+    public Supplier(int supplierId, String supplierName, String email, String phone, String address, String username, String password, String role) {
         this.supplierId = supplierId;
         this.supplierName = supplierName;
-        this.contactEmail = contactEmail;
-        this.contactPhone = contactPhone;
+        this.email = email;
+        this.phone = phone;
         this.address = address;
+        this.username = username;
+        this.password = password;
         this.role = role;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public int getSupplierId() {
@@ -34,20 +53,32 @@ public class Supplier {
         this.supplierName = supplierName;
     }
 
-    public String getContactEmail() {
-        return contactEmail;
+    public String getUsername() {
+        return username;
     }
 
-    public void setContactEmail(String contactEmail) {
-        this.contactEmail = contactEmail;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getContactPhone() {
-        return contactPhone;
+    public String getPassword() {
+        return password;
     }
 
-    public void setContactPhone(String contactPhone) {
-        this.contactPhone = contactPhone;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getAddress() {
@@ -66,13 +97,9 @@ public class Supplier {
         this.role = role;
     }
 
-    
-
-    
-
-    
-
-
-
-
+    @Override
+    public int compareTo(Supplier otherSupplier) {
+        // Implement comparison logic based on account balance
+        return this.getSupplierName().compareTo(otherSupplier.getSupplierName());
+    }
 }

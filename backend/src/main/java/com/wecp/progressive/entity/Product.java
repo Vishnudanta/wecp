@@ -1,15 +1,25 @@
 package com.wecp.progressive.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int productId;
     private int warehouseId;
     private String productName;
     private String productDescription;
     private int quantity;
-    private double price;
+    private Long price;
 
-    public Product(int productId, int warehouseId, String productName, String productDescription, int quantity,
-            double price) {
+    public Product() {
+    }
+
+    public Product(int productId, int warehouseId, String productName, String productDescription, int quantity, Long price) {
         this.productId = productId;
         this.warehouseId = warehouseId;
         this.productName = productName;
@@ -58,15 +68,11 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public double getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
-
-    
-
-    
 }
